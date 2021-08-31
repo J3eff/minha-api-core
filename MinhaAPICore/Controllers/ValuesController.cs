@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations;
 namespace MinhaAPICore.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ValuesController : ControllerBase
     {
         // GET api/values
-        [HttpGet]
+        [HttpGet] // Atributos
         public ActionResult<IEnumerable<string>> ObterTodos()
         {
             var valores = new string[] { "value1", "value1" };
