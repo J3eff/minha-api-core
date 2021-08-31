@@ -1,15 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace MinhaAPICore.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class ValuesController : ControllerBase
     {
         // GET api/values
@@ -18,7 +15,7 @@ namespace MinhaAPICore.Controllers
         {
             var valores = new string[] { "value1", "value1" };
 
-            if (valores.Length < 5000)
+            if (valores.Length < 1)
                 return BadRequest();
 
             return Ok(valores);
@@ -46,12 +43,16 @@ namespace MinhaAPICore.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(Product), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult Post(Product value)
+        public ActionResult Post(Product product)
         {
             // Quando temos um tipo complexo não precisamo informa o FromBody
             // FromBody - diz que value esta vindo dentro do corpo do meu Request Http
+            if (product.Id == 0) return BadRequest();
 
+            // add no banco
 
+            //return Ok(product); retorna 200 por isso utilizamos CreatedAtAction, pois ele retorna o 201.
+            return CreatedAtAction(nameof(Post), product);
         }
 
         // PUT api/values/5
