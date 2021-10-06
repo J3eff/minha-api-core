@@ -46,7 +46,7 @@ namespace MinhaAPICore.Controllers
         public ActionResult Post(Product product)
         {
             // Quando temos um tipo complexo não precisamo informa o FromBody
-            // FromBody - diz que value esta vindo dentro do corpo do meu Request Http
+            // FromBody - diz que value esta vindo dentro do corpo do meu Request Http (Body)
             if (product.Id == 0) return BadRequest();
 
             // add no banco
